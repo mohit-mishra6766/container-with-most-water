@@ -1,0 +1,40 @@
+class Solution {
+    public List<Integer> partitionLabels(String s) {
+       List<Integer> ans = new ArrayList<>();
+        if (s.length() <= 1) {
+            ans.add(s.length());
+            return ans;
+        }
+
+        int len = s.length();
+        Map<Character, Integer> idxMap = new HashMap<>();
+        for (int i = 0; i < len; i++) {
+            char ch = s.charAt(i);
+            if (idxMap.containsKey(ch)) {
+                idxMap.put(ch, i);
+            } else {
+                idxMap.put(ch, i);
+            }
+        }
+
+        int index = 0;
+        int[] partSection = new int[2];
+
+        while (index < len) {
+            while (index >= partSection[0] && index <= partSection[1]) {
+                char ch = s.charAt(index);
+                index++;
+                int lastIdx = idxMap.get(ch);
+                if (lastIdx > partSection[1]) {
+                    partSection[1] = lastIdx;
+                }
+            }
+
+            ans.add(partSection[1] - partSection[0] + 1);
+            partSection[0] = partSection[1] = index;
+        }
+
+        return ans;
+     
+    }
+}
