@@ -1,0 +1,28 @@
+class Solution {
+    public int scoreOfParentheses(String s) {
+      s = s.replace("()", "1");
+
+        int ans = 0;
+        int base = 1;
+
+        for (char ch : s.toCharArray()) {
+            switch (ch) {
+                case '(':
+                    base *= 2;
+                    break;
+
+                case ')':
+                    base /= 2;
+                    break;
+
+                default:
+                    ans += base;
+                    break;
+            }
+        }
+
+        return ans;
+    }
+
+    
+}
