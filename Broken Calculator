@@ -1,0 +1,20 @@
+class Solution {
+     public int brokenCalc(int startValue, int target) {
+        if (startValue >= target) {
+            return startValue - target;
+        }
+
+        int ans = 0;
+        while (startValue < target) {
+            if (target % 2 == 0) {
+                target >>= 1;
+                ans++;
+            } else {
+                target = (target + 1) >> 1;
+                ans += 2;
+            }
+        }
+
+        return ans + startValue - target;   
+    }
+}
