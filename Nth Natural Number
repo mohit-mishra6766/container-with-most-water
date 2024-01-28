@@ -1,0 +1,26 @@
+
+class Solution {
+
+    long findNth(long N)
+
+    {
+
+        //code here
+
+        StringBuilder sb=new StringBuilder();
+
+        long m=0;
+
+        while(N>0){
+
+            sb.append((char)(N%9+'0'));
+
+            N/=9;
+
+        }
+
+        return Long.valueOf(sb.reverse().toString());
+
+    }
+
+}
