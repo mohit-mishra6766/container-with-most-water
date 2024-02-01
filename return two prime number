@@ -1,0 +1,30 @@
+
+class Solution
+{
+    static List<Integer> primeDivision(int N)
+    {
+        // code here
+        List<Integer> ans = new ArrayList<>();
+        boolean seige[] = new boolean[N];
+        Arrays.fill(seige,true);
+        
+        for(int i=2;i<=Math.sqrt(N);i++)
+        {
+            if(seige[i])
+            {
+                for(int mul = i*i;mul<N;mul+=i)
+                seige[mul] = false;
+            }
+        }
+        for(int i=2;i<N;i++)
+        {
+            if(seige[i] && seige[N-i])
+            {
+                ans.add(i);
+                ans.add(N-i);
+                break;
+            }
+        }
+        return ans;
+    }
+}
