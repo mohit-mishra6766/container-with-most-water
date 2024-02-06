@@ -1,0 +1,23 @@
+
+class Solution
+{
+    public int total_cost(int[][] cost){
+        int n = cost.length;
+        Integer[][] dp = new Integer[n+1][(1<<n)];
+        return findCost(0,1<<0,cost,dp);
+    }
+    int findCost(int node,int mask,int[][] cost,Integer[][] dp){
+        
+        int n = cost.length;
+        if(mask==((1<<n)-1)) return cost[node][0];
+        if(dp[node][mask]!=null) return dp[node][mask];
+        
+        int mini = Integer.MAX_VALUE;
+        for(int city = 0; city<cost.length; city++){
+            if((mask & (1<<city))==0){
+                mini = Math.min(mini, cost[node][city] + findCost(city,mask|(1<<city),cost,dp));
+            }
+        }
+        return dp[node][mask]=mini;
+    }
+}
