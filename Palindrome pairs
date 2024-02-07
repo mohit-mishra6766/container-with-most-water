@@ -1,0 +1,36 @@
+
+class Solution {
+    
+    static boolean check(String s)
+    {
+        for(int i = 0 ; i < s.length()/2 ; i++)
+        {
+            if( s.charAt(i) != s.charAt(s.length()-1-i))
+            {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    
+    static boolean palindromepair(int N, String arr[]) {
+        // code here
+        
+        for( int i = 0; i < arr.length-1 ; i++)
+        {
+            for( int j = i+1 ; j < arr.length ; j++)
+            {
+                if( arr[i].charAt(0) == arr[j].charAt(arr[j].length()-1) || arr[j].charAt(0) == arr[i].charAt(arr[i].length()-1) )
+                {
+                    if(check(arr[i]+arr[j]) || check(arr[j]+arr[i]))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
