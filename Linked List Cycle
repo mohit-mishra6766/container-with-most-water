@@ -1,0 +1,17 @@
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode fast = head;   //  Normal Speed Pointer
+        ListNode fastx2 = head; //  2x Speed pointer
+        if(head == null) return false;  //  Check is given head is not null
+
+        //  Check pointers are not null
+        while(fast != null && fastx2 != null && fastx2.next != null){
+            fast = fast.next;   //  Move normal pointer
+            fastx2 = fastx2.next.next;  //  Move the 2x pointer
+            if(fast == fastx2){ //  Check does pointers intersect
+                return true;
+            }
+        }
+        return false;
+    }
+}
